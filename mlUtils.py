@@ -30,10 +30,10 @@ def compute_cost(x, y, w, b):
     # Loop through all training examples
     for i in range(m):
         # Calculate predicted value: f(x) = w*x + b
-        f_wb = w * x[i] + b
+        f_wb = w * x.iloc[i] + b
         
         # Accumulate squared error for this example
-        cost = cost + (f_wb - y[i])**2
+        cost = cost + (f_wb - y.iloc[i])**2
     
     # Calculate mean squared error (divide by 2m)
     total_cost = 1 / (2 * m) * cost
@@ -73,14 +73,14 @@ def compute_gradient(x, y, w, b):
     # Loop through all training examples
     for i in range(m):
         # Calculate predicted value: f(x) = w*x + b
-        y_hat = x[i] * w + b
+        y_hat = x.iloc[i] * w + b
         
         # Calculate gradient contribution for this example
         # Gradient w.r.t. w: (prediction - actual) * feature value
-        dj_dw_i = (y_hat - y[i]) * x[i]
+        dj_dw_i = (y_hat - y.iloc[i]) * x.iloc[i]
         
         # Gradient w.r.t. b: (prediction - actual)
-        dj_db_i = (y_hat - y[i])
+        dj_db_i = (y_hat - y.iloc[i])
         
         # Accumulate gradients
         dj_db += dj_db_i
